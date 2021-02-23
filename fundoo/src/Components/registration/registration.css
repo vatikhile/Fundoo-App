@@ -1,0 +1,180 @@
+
+
+.mainContent {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 4px;
+  align-items: center;
+  place-content: center;
+  height: 100%;
+}
+.new-register {
+  border: 1px solid #dadce0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  padding: 48px 40px 36px;
+}
+.new-register-email {
+  width: 370px;
+}
+
+.new-register-bottom {
+  margin: 26px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 38.5%; */
+}
+.new-register-bottom button:nth-child(1) {
+  color: #1a73e8;
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: capitalize;
+  /* background-color: red; */
+}
+.new-register-bottom button:nth-child(2) {
+  background-color: #6200ee;
+  color: #fff;
+  box-shadow: none;
+  padding: 6px 28px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.accountImage img {
+  /* width: 270px; */
+  width: 270px;
+  height: 270px;
+}
+.accountImage {
+  display: flex;
+  justify-content: center;
+  padding-left: 48px;
+  align-items: center;
+  flex-direction: column;
+}
+.accountImage > div {
+  font-size: 16px;
+  font-weight: 300;
+  color: #202124;
+}
+.header {
+  font-size: 24px;
+}
+.header span {
+  background-image: linear-gradient(
+    to right,
+    #88b2f8,
+    #ea443b,
+    #feeebf,
+    #88b2f8,
+    #40a853,
+    #ea443b
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.new-register h2 {
+  font-weight: 400;
+  font-size: 24px;
+  color: #202124;
+}
+/* .fieldContent{
+   
+  
+
+} */
+.firstInput {
+  width: 180px;
+  /* margin-right: 10px; */
+}
+.lastNameInput {
+  width: 180px;
+  /* margin-left: 5px; */
+}
+.passwordField {
+  width: 180px;
+  /* margin-right: 10px; */
+}
+.confirmField {
+  width: 180px;
+}
+.MuiContainer-root {
+  height: 100%;
+}
+
+.fieldHint {
+  font-size: 12px;
+  color: #5f6368;
+  margin-left: 22px;
+}
+.fieldHint {
+  font-size: 12px;
+  color: #5f6368;
+  margin-left: 22px;
+}
+.checkbox-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5px;
+}
+.checkbox-field div {
+  font-size: 14px;
+  color: #202124;
+}
+
+.password-field {
+  margin-top: 17px;
+}
+
+@media screen and (max-width: 780px) {
+  .accountImage {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .fieldContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .password-field {
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    display: flex;
+    justify-content: center;
+  }
+  .new-register h2 {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .new-register-email {
+    width: 270px;
+  }
+  .firstInput {
+    width: 270px;
+    /* margin-right: 10px; */
+  }
+  .lastNameInput {
+    width: 270px;
+    /* margin-left: 5px; */
+  }
+  .passwordField {
+    width: 270px;
+    /* margin-right: 10px; */
+  }
+  .confirmField {
+    width: 270px;
+  }
+  .checkbox-field {
+    margin-right: 130px;
+  }
+}
