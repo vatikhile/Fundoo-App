@@ -1,0 +1,61 @@
+/* .main-toolbar{
+    width: 100%;
+}
+.mainSection{
+    display: flex;
+    flex-direction: column;
+}
+.Drawer-section{
+    margin-top: 50px;
+    background-color: red;
+}
+.sub-drawer{
+    margin-top: 60px;
+} */
+.menuBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: -webkit-fill-available;
+}
+.menuBar div:nth-child(1) {
+  margin-left: 45px;
+  color: #5f6368;
+  font-size: 24px;
+}
+.menuBar div:nth-child(2) input {
+  /* margin-left: 10px */
+  /* width: 100px;
+     */
+  font-size: 17px;
+  width: 700px;
+  background-color: whitesmoke;
+  height: 3px;
+  outline: none;
+}
+.menuBar div:nth-child(2) input:focus {
+  border: 1px solid transparent;
+}
+.mainDrawer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
+.mainDrawer > button {
+  width: -webkit-fill-available;
+  border-top-right-radius: 32px;
+  border-bottom-right-radius: 32px;
+  height: 49px;
+  font-size: .875rem;
+  font-weight: 500;
+  color: #202124;
+  text-transform: capitalize;
+}
+.mainDrawer > button:focus {
+  background-color: #feefc3;
+}
+
+.mainDrawer > button:nth-child(1) {
+  background-color: #feefc3;
+}
