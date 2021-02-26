@@ -1,0 +1,119 @@
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  align-items: center;
+}
+.contentBox {
+  border: 1px solid #dadce0;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  place-content: center;
+  padding: 40px 48px 40px;
+}
+.headerLogin {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+}
+.headerLogin span {
+  background-image: linear-gradient(
+    to right,
+    #88b2f8,
+    #ea443b,
+    #feeebf,
+    #88b2f8,
+    #40a853,
+    #ea443b
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.content h2 {
+  font-weight: 400;
+  font-size: 24px;
+  color: #202124;
+  margin: 8px 0px;
+}
+.content h4 {
+  color: #202124;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  margin: 9px 0px;
+}
+.emailFieldlogin {
+  width: 300px;
+}
+.passwordFieldlogin {
+  width: 300px;
+}
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.login-button {
+  margin: 26px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: -webkit-fill-available;
+  /* width: 38.5%; */
+}
+.login-button button:nth-child(1) {
+  color: #1a73e8;
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: capitalize;
+  /* background-color: red; */
+}
+.login-button button:nth-child(2) {
+  background-color: #4688f1;
+  color: #fff;
+  box-shadow: none;
+  padding: 6px 20px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.checkbox-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  width: -webkit-fill-available;
+  /* place-content: ; */
+  margin-top: 5px;
+}
+.checkbox-field div {
+  font-size: 14px;
+  color: #202124;
+}
+.create-button{
+  /* margin: 26px 0px; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: -webkit-fill-available;
+}
+.create-button button{
+  color: #1a73e8;
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: capitalize;
+}
+.create-button button:focus{
+  background-color: transparent;
+}
+@media screen and (max-width: 415px) {
+  .contentBox {
+    border: 1px solid transparent;
+  }
+  .mainContent {
+    height: auto;
+  }
+}

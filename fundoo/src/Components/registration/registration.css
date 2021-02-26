@@ -1,5 +1,3 @@
-
-
 .mainContent {
   display: flex;
   justify-content: center;
@@ -34,8 +32,12 @@
   text-transform: capitalize;
   /* background-color: red; */
 }
+.linkButton {
+  color: #1a73e8;
+  text-decoration: unset;
+}
 .new-register-bottom button:nth-child(2) {
-  background-color: #6200ee;
+  background-color: #4688f1;
   color: #fff;
   box-shadow: none;
   padding: 6px 28px;
@@ -104,6 +106,14 @@
 .MuiContainer-root {
   height: 100%;
 }
+/* .password-field{
+  display: flex;
+  flex-direction: row;
+} */
+/* .password-field div:nth-child(1){
+  width: 180px;
+  background-color: red;
+} */
 
 .fieldHint {
   font-size: 12px;
@@ -142,6 +152,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  .new-register {
+    /* border: 1px solid transparent;
+     */
+    border: 1px solid transparent;
   }
   .password-field {
     display: flex;

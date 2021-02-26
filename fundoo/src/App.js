@@ -1,14 +1,38 @@
-// import { Router, Route, Switch } from "react-router";
-// import logo from './logo.svg';
+
 import './App.css';
-// import reg from '../src/reg'
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import Registration from '../src/Components/registration/registration';
-
-
+import Login from '../src/Components/Login/login';
+import Forget from '../src/Components/ForgetPassword/forgetPassword'
+import Reset from '../src/Components/ResetPassword/resetPassword'
+import Dashboard from '../src/Components/Dashboard/Dashboard'
 function App() {
   return (
 
-    <Registration />
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Registration} />
+          {/* <Registration />
+        </Route> */}
+        <Route path="/login" component={Login} />
+          {/* <Login />
+        </Route> */}
+        <Route path="/forget" component={Forget} />
+          {/* <Forget />
+        </Route> */}
+        <Route path="/resetPassword/:token"component={Reset} />
+          {/* <Reset />
+        </Route> */}
+                <Route exact path="/dashboard" component={Dashboard} />
+      </Switch>
+
+    </Router>
+
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
@@ -25,7 +49,7 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    
+
   );
 }
 
