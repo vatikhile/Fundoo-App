@@ -1,0 +1,45 @@
+.main {
+  display: flex;
+  align-items: center;
+  place-content: center;
+  flex-direction: column;
+}
+.main > div {
+  width: 500px;
+  border-color: #e0e0e0;
+  border: 1px solid #e8e4e4;
+  border-radius: 7px;
+  padding:  12px 12px 4px;
+  /* box-shadow: 7px 13px 30px 2px #cecccc; */
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  cursor: pointer;
+}
+.extendCard {
+  padding: 4px;
+}
+.noExtend {
+  display: none;
+}
+.descriptionField {
+  padding: 4px;
+}
+.showsIcons div > button {
+  background-color: transparent;
+  font-size: 15px;
+  text-transform: capitalize;
+  box-shadow: none;
+}
+.showsIcons {
+  padding: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  place-content: space-between;
+}
+/* .showsIcons > button:focus {
+  background-color: transparent;
+  font-size: 15px;
+  text-transform: capitalize;
+  box-shadow: none;
+} */

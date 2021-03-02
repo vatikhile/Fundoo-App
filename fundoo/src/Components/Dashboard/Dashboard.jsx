@@ -6,21 +6,30 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import { TextField } from "@material-ui/core";
+// import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+// import InboxIcon from "@material-ui/icons/MoveToInbox";
+// import MailIcon from "@material-ui/icons/Mail";
 import Drawer from "@material-ui/core/Drawer";
 import { Tooltip } from "@material-ui/core";
 import "./Dashboard.css";
 import Logo from "../../Asset/keep_logo.png";
+import Archive from "../../Asset/archive.svg";
+import Reminder from "../../Asset/reminder.svg";
+import Edit from "../../Asset/edit.svg";
+import Trash from "../../Asset/menuTrash.svg";
+import EmojiObjectsOutlinedIcon from "@material-ui/icons/EmojiObjectsOutlined";
 import styled from "styled-components";
-const drawerWidth = 240;
+import AddNewCard from "../../Components/Add_NewCards/AddNewCards";
+// import Icon from '@material-ui/core/Icon';
+import SearchSharpIcon from "@material-ui/icons/SearchSharp";
+const drawerWidth = 284;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -48,16 +57,19 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: "nowrap",
+    borderRight:"0",
   },
   drawerOpen: {
     width: drawerWidth,
     marginTop: 64,
+    borderRight:"0",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerClose: {
+    borderRight:"0",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -76,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     backgroundColor: "white",
 
+
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
@@ -88,14 +101,17 @@ const useStyles = makeStyles((theme) => ({
       borderWidth: "0",
     },
   },
+  MuiDrawer:{
+  paperAnchorLeft:{
+    borderRight:"0"
+  }
+}
 }));
 const StyledTextField = styled(TextField)`
-  label.Mui-focused {
-    color: green;
-  }
   .MuiOutlinedInput-root {
     fieldset {
-      border-color: white;
+      border: 0;
+      color: black;
     }
     &:hover fieldset {
       border-color: white;
@@ -106,7 +122,7 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
-export default function PersistentDrawerLeft() {
+export default function Dashboard() {
   const classes = useStyles();
   // const mainClasses=useStyles2()
   // const theme = useTheme();
@@ -137,7 +153,8 @@ export default function PersistentDrawerLeft() {
           <img src={Logo} alt="FundooImg" style={{ width: "38px" }} />
           <div className="menuBar">
             <div>FundooNotes</div>
-            <div>
+            <div className="searchSection">
+              <SearchSharpIcon />
               <StyledTextField
                 placeholder="Search"
                 variant="outlined"
@@ -164,63 +181,81 @@ export default function PersistentDrawerLeft() {
         }}
       >
         <Divider />
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        <div className="mainDrawer">
+          <div>
+            <List>
+              <ListItem button>
+                <ListItemIcon>
+                  <EmojiObjectsOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Notes" />
+              </ListItem>
+            </List>
+          </div>
+          <div>
+            <List>
+              <ListItem button>
+                <ListItemIcon>
+                  <img src={Reminder} alt="FundooImg" />
+                </ListItemIcon>
+                <ListItemText primary="Reminder" />
+              </ListItem>
+            </List>
+          </div>
+          <div>
+            <List>
+              <ListItem button>
+                <ListItemIcon>
+                  <img src={Edit} alt="FundooImg" />
+                </ListItemIcon>
+                <ListItemText primary="Edit" />
+              </ListItem>
+            </List>
+          </div>
+          <div>
+            <List>
+              <ListItem button>
+                <ListItemIcon>
+                  <img src={Archive} alt="FundooImg" />
+                </ListItemIcon>
+                <ListItemText primary="Archive" />
+              </ListItem>
+            </List>
+          </div>
+          <div>
+            <List>
+              <ListItem button>
+                <ListItemIcon>
+                  <img src={Trash} alt="FundooImg" />
+                </ListItemIcon>
+                <ListItemText primary="Trash" />
+              </ListItem>
+            </List>
+          </div>
+        </div>
+        {/* <div >
+          <div>
+          <SearchSharpIcon />
+          <Button>Notes</Button>
+          </div>
+          <Button>Reminder</Button>
+          <Button>Edit Label</Button>
+          <Button>Archive</Button>
+          <Button>Trash</Button>
+        </div> */}
       </Drawer>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        <AddNewCard />
+        {/* <div className={classes.toolbar} />
+        <div className="main" onClick={handleAddCard}>
+          Take a note
+        </div>
+        <WarningBanner warn={openCard} /> */}
       </main>
     </div>
   );
 }
+
 // <div>
 //   <MuiThemeProvider theme={thm}>
 //     <AppBar position="fixed">
@@ -249,17 +284,19 @@ export default function PersistentDrawerLeft() {
 //       </Toolbar>
 //     </AppBar>
 //     <Drawer open={open} variant="persistent" anchor="left">
-//       <div className="mainDrawer">
-//         <Button>Notes</Button>
 
-//         <Button>Reminder</Button>
-
-//         <Button>Edit Label</Button>
-
-//         <Button>Archive</Button>
-
-//         <Button>Trash</Button>
-//       </div>
 //     </Drawer>
 //   </MuiThemeProvider>
 // </div>
+/* 
+        <Divider />
+        <List>
+          {["All mail", "Trash", "Spam"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List> */

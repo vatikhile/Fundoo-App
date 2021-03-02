@@ -5,10 +5,7 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import Account from "../../Asset/account.svg";
 import Checkbox from "@material-ui/core/Checkbox";
 import Snackbar from "@material-ui/core/Snackbar";
-// import CloseIcon from '@material-ui/icons/Close';
-// import Link from '@material-ui/core/Link';
-// import Snackbar from '@material-ui/core/Snackbar';
-// import { useHistory } from "react-router-dom";
+
 import UserService from "../../Service/userService/userService";
 import { Link } from "react-router-dom";
 import "./registration.css";
