@@ -16,7 +16,6 @@ export default class userService {
         return httpService.Post(`${this.baseUrl}user/reset`, data);
     }
     resetpassword = (data, token) => {
-        console.log("tokendd",token);
         return httpService.Post(`${this.baseUrl}user/reset-password`, data, {
             headers: {
                 Authorization: `${token}`,

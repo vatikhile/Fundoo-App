@@ -14,8 +14,6 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-// import InboxIcon from "@material-ui/icons/MoveToInbox";
-// import MailIcon from "@material-ui/icons/Mail";
 import Drawer from "@material-ui/core/Drawer";
 import { Tooltip } from "@material-ui/core";
 import "./Dashboard.css";
@@ -26,7 +24,8 @@ import Edit from "../../Asset/edit.svg";
 import Trash from "../../Asset/menuTrash.svg";
 import EmojiObjectsOutlinedIcon from "@material-ui/icons/EmojiObjectsOutlined";
 import styled from "styled-components";
-import AddNewCard from "../../Components/Add_NewCards/AddNewCards";
+import listView from "../../Asset/list_view.svg";
+import MainContent from '../../Components/MainContent/MainContent'
 // import Icon from '@material-ui/core/Icon';
 import SearchSharpIcon from "@material-ui/icons/SearchSharp";
 const drawerWidth = 284;
@@ -57,19 +56,19 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: "nowrap",
-    borderRight:"0",
+    borderRight: "0",
   },
   drawerOpen: {
     width: drawerWidth,
     marginTop: 64,
-    borderRight:"0",
+    borderRight: "0",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerClose: {
-    borderRight:"0",
+    borderRight: "0",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -88,7 +87,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     backgroundColor: "white",
 
-
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
@@ -101,11 +99,11 @@ const useStyles = makeStyles((theme) => ({
       borderWidth: "0",
     },
   },
-  MuiDrawer:{
-  paperAnchorLeft:{
-    borderRight:"0"
-  }
-}
+  MuiDrawer: {
+    paperAnchorLeft: {
+      borderRight: "0",
+    },
+  },
 }));
 const StyledTextField = styled(TextField)`
   .MuiOutlinedInput-root {
@@ -124,12 +122,6 @@ const StyledTextField = styled(TextField)`
 
 export default function Dashboard() {
   const classes = useStyles();
-  // const mainClasses=useStyles2()
-  // const theme = useTheme();
-  // const [age, setAge] = useState(42)
-  // }
-  // const [fruit, setFruit] = useState('banana');
-  // const [todos, setTodos] = useState('[{ text: Learn Hooks }]');
 
   const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {
@@ -140,7 +132,7 @@ export default function Dashboard() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar className="toolbar-content" position="fixed">
-        <Toolbar>
+        <Toolbar disableGutters={true}>
           <Tooltip title="Main menu">
             <IconButton
               color="inherit"
@@ -152,7 +144,7 @@ export default function Dashboard() {
           </Tooltip>
           <img src={Logo} alt="FundooImg" style={{ width: "38px" }} />
           <div className="menuBar">
-            <div>FundooNotes</div>
+            <div>fundooNotes</div>
             <div className="searchSection">
               <SearchSharpIcon />
               <StyledTextField
@@ -160,7 +152,11 @@ export default function Dashboard() {
                 variant="outlined"
                 className="searchField"
                 margin="normal"
+                fullWidth={true}
               />
+            </div>
+            <div>
+              <img src={listView} alt="listView" />
             </div>
           </div>
         </Toolbar>
@@ -233,70 +229,12 @@ export default function Dashboard() {
             </List>
           </div>
         </div>
-        {/* <div >
-          <div>
-          <SearchSharpIcon />
-          <Button>Notes</Button>
-          </div>
-          <Button>Reminder</Button>
-          <Button>Edit Label</Button>
-          <Button>Archive</Button>
-          <Button>Trash</Button>
-        </div> */}
       </Drawer>
       <main className={classes.content}>
-        <AddNewCard />
-        {/* <div className={classes.toolbar} />
-        <div className="main" onClick={handleAddCard}>
-          Take a note
+        <div>
+          <MainContent />
         </div>
-        <WarningBanner warn={openCard} /> */}
       </main>
     </div>
   );
 }
-
-// <div>
-//   <MuiThemeProvider theme={thm}>
-//     <AppBar position="fixed">
-//       <Toolbar className="toolBar">
-//         <Tooltip title="Main menu">
-//           <IconButton
-//             color="inherit"
-//             aria-label="Open drawer"
-//             onClick={handleToggle}
-//           >
-//             <MenuIcon id="menu" />
-//           </IconButton>
-//         </Tooltip>
-//         {/* <div>{todos}</div> */}
-//         <div className="menuBar">
-//           <div>Keep</div>
-//           <div>
-//             <TextField
-//               placeholder="Search"
-//               variant="outlined"
-//               className="searchField"
-//               margin="normal"
-//             />
-//           </div>
-//         </div>
-//       </Toolbar>
-//     </AppBar>
-//     <Drawer open={open} variant="persistent" anchor="left">
-
-//     </Drawer>
-//   </MuiThemeProvider>
-// </div>
-/* 
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */

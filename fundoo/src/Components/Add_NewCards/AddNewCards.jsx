@@ -1,10 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
-// import clsx from "clsx";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { TextField } from "@material-ui/core";
-import Icons from '../../Components/CardIcons/CardIcon'
+import NoteServices from "../../Service/NoteService/noteService";
+import Icons from "../../Components/CardIcons/CardIcon";
+import Snackbar from "@material-ui/core/Snackbar";
 import "./AddNewCards.css";
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -41,13 +42,58 @@ const StyledTextField = styled(TextField)`
 
 export default function AddCard() {
   const classes = useStyles();
+  const addNotes = new NoteServices();
 
   const [openCard, setOpenCards] = useState(false);
+  const [info, setInfo] = useState({ title: "", description: "" });
+  const [open, setOpen] = useState(false);
+
   const handleAddCard = () => {
     setOpenCards(true);
   };
-  const handleClose = () => {
+
+  const validate = () => {
+  
+    if (info.title.length !== 0 && info.description.length !== 0) {
+      var data = {
+        title: info.title,
+        description: info.description,
+        reminder: "",
+        labelIdList: [""],
+        color: "",
+        isArchived: false,
+        collaborators: [""],
+        imageUrl: "",
+      };
+      var token = localStorage.getItem("userToken");
+      addNotes
+        .addNote(data, token)
+        .then((response) => {
+          console.log("create note 109 ", response);
+          setOpen(true);
+       
+        })
+        .catch((err) => {
+          console.log("Eroorrrrrr....", err);
+        });
+    }
+  };
+  const handleClose = (e) => {
+    e.preventDefault();
+    validate();
+    info.title = "";
+    info.description = "";
+
     setOpenCards(false);
+  };
+
+  const handleChanges = (e) => {
+    const { name, value } = e.target;
+    setInfo((prevState) => ({
+      ...prevState,
+
+      [name]: value,
+    }));
   };
 
   return (
@@ -60,6 +106,9 @@ export default function AddCard() {
             <StyledTextField
               placeholder="Title"
               variant="outlined"
+              name="title"
+              value={info.title}
+              onChange={handleChanges}
               fullWidth={true}
             />
           </div>
@@ -68,36 +117,31 @@ export default function AddCard() {
             <StyledTextField
               placeholder="Take a note"
               variant="outlined"
+              name="description"
+              value={info.description}
+              onChange={handleChanges}
               fullWidth={true}
             />
           </div>
           <div className={openCard ? "showsIcons" : "noExtend"}>
             <div>
-<Icons/>
+              <Icons />
             </div>
             <div>
-            <Button onClick={handleClose} focusVisible={false}>
-              close
-            </Button>
+              <Button onClick={handleClose} focusVisible={false}>
+                close
+              </Button>
             </div>
           </div>
         </div>
       </div>
-    
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        message="Add new Note sucessfully"
+        severity="success"
+        onClose={() => setOpen(!open)}
+      />
     </div>
   );
 }
-
-//   function Extendcard(props) {
-//     if (!props.extend) {
-//       return null;
-//     }
-//     return <div className="extendCard">newcards</div>;
-//   }
-// }
-
-/* <div
-className={clsx(classes.toggle, { */
-//   [classes.noExtend]: !openCard,
-// })}
-// >

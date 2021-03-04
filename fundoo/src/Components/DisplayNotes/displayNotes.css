@@ -1,0 +1,9 @@
+.CardsIcons {
+  visibility: hidden;
+  margin-left: 10px;
+}
+
+.maincard div:hover .CardsIcons {
+  visibility: visible;
+  margin-left: 10px;
+}

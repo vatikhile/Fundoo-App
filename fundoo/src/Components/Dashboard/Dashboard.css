@@ -26,6 +26,10 @@
   /* height: 3px; */
   outline: none;
 }
+.menuBar div:nth-child(3) {
+  margin-left: 70px;
+  cursor: pointer;
+}
 .searchSection {
   display: flex;
   align-items: center;
@@ -34,7 +38,7 @@
   border-radius: 8px;
   height: 48px;
   place-content: start;
-  width: 524px;
+  width: 620px;
 }
 
 .searchSection div:focus {
@@ -81,7 +85,14 @@
 header > div {
   padding: 0px;
 }
-
+/* .mainContentDash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+/* .mainContent:first-child {
+ margin-bottom: 500px;
+} */
 /* .main-toolbar{
     width: 100%;
 }
