@@ -7,3 +7,19 @@
   visibility: visible;
   margin-left: 10px;
 }
+.maincard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.dialogExtend {
+  width: 559px;
+}
+.dialogDescription {
+  padding: 4px 0px 28px;
+  /* padding-bottom: 28px; */
+}
+/* .maincard  {
+  margin-left: 10px;
+  margin-top: 10px;
+} */

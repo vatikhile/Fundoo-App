@@ -1,15 +1,15 @@
-.IconsList{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.IconsList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-.IconsList>div{
-    margin-right: 30px;
+.IconsList > div {
+  margin-right: 27px;
 }
-.IconsList div>Img{
-    width: 20px;
-    cursor: pointer;
+.IconsList div > Img {
+  width: 20px;
+  cursor: pointer;
 }
-.IconsList div>Img:focus{
+.IconsList div > Img:focus {
   background-color: red;
 }

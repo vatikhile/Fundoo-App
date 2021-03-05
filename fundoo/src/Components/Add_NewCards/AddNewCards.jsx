@@ -53,7 +53,6 @@ export default function AddCard() {
   };
 
   const validate = () => {
-  
     if (info.title.length !== 0 && info.description.length !== 0) {
       var data = {
         title: info.title,
@@ -71,7 +70,6 @@ export default function AddCard() {
         .then((response) => {
           console.log("create note 109 ", response);
           setOpen(true);
-       
         })
         .catch((err) => {
           console.log("Eroorrrrrr....", err);

@@ -21,4 +21,13 @@ export default class noteService {
             },
         })
     }
+
+    updateNote(data) {
+        return httpService.Post(`${this.baseUrl}/updateNotes`, data, {
+            headers: {
+                Authorization: `${token}`,
+            },
+        })
+    }
+
 }

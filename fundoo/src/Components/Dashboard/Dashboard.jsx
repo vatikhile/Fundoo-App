@@ -124,9 +124,14 @@ export default function Dashboard() {
   const classes = useStyles();
 
   const [open, setOpen] = useState(true);
+  const [show, setShow] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
+  const toggle=(e)=>{
+    setShow(true)
+    e.style.display  =  show ? 'block' : 'none'
+  }
 
   return (
     <div className={classes.root}>
@@ -142,7 +147,7 @@ export default function Dashboard() {
               <MenuIcon id="menu" />
             </IconButton>
           </Tooltip>
-          <img src={Logo} alt="FundooImg" style={{ width: "38px" }} />
+          <img src={Logo} alt="FundooImg" style={{ width: "38px" }} onClick={toggle}/>
           <div className="menuBar">
             <div>fundooNotes</div>
             <div className="searchSection">
