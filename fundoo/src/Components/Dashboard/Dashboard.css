@@ -7,14 +7,19 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
   /* padding: 8px; */
-  /* width: -webkit-fill-available; */
+  width: -webkit-fill-available;
 }
-.menuBar div:nth-child(1) {
+.titleMenu {
   /* margin-left: 10px; */
-  margin: 0px 40px 0px 10px;
+  /* margin: 0px 40px 0px 10px; */
   color: #5f6368;
   font-size: 21px;
+  width: 150px;
+  max-width: 150px;
+  display: inline-block;
   /* background-color: red; */
 }
 .menuBar div:nth-child(2) input {
@@ -27,18 +32,23 @@
   outline: none;
 }
 .menuBar div:nth-child(3) {
-  margin-left: 70px;
+  /* margin-left: 70px; */
   cursor: pointer;
+  cursor: pointer;
+  background-color: blue;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
 }
 .searchSection {
   display: flex;
   align-items: center;
-  padding: 8px 8px 17px 15px;
+  padding: 8px 8px 8px 15px;
   background-color: whitesmoke;
   border-radius: 8px;
   height: 48px;
   place-content: start;
-  width: 620px;
+  width: 720px;
 }
 
 .searchSection div:focus {
@@ -72,11 +82,13 @@
   background-color: #feefc3;
 }
 
-.mainDrawer > div:nth-child(1) {
+.backColor {
   background-color: #feefc3;
   /* padding-bottom: 8px;
      */
   padding: 0px !important;
+  border-top-right-radius: 32px;
+  border-bottom-right-radius: 32px;
 }
 .MuiList-padding {
   padding-top: 0px !important;
@@ -84,6 +96,55 @@
 }
 header > div {
   padding: 0px;
+}
+.linkText{
+  text-decoration: unset;
+}
+@media screen and (max-width: 1050px) {
+  .searchSection {
+    width: 550px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .searchSection {
+    width: 410px;
+  }
+  /* .menuBar div:nth-child(1) {
+    font-size: 15px;
+    width: 45px;
+    max-width: 45px;
+  } */
+}
+@media screen and (max-width: 710px) {
+  .searchSection {
+    width: 250px;
+  }
+}
+@media screen and (max-width: 570px) {
+  .titleMenu{
+    font-size: 15px;
+    width: 100px;
+    max-width: 100px;
+    display: inline-block;
+  }
+}
+@media screen and (max-width: 500px) {
+  .searchSection {
+    width: 150px;
+  }
+  .titleMenu {
+    font-size: 12px;
+    width: 80px;
+    max-width: 80px;
+    display: inline-block;
+  }
+}
+@media screen and (max-width: 605px) {
+.makeStyles-drawerOpen-6 {
+position: fixed;
+z-index: 10;
+}
 }
 /* .mainContentDash {
   display: flex;

@@ -46,7 +46,7 @@ function App() {
 
         <Route path="/resetPassword/:token" component={Reset} />
 
-        <SecuredRoute exact path="/dashboard" component={Dashboard} />
+        <SecuredRoute path="/dashboard" component={Dashboard} />
       </Switch>
 
     </Router>

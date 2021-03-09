@@ -13,7 +13,6 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import Snackbar from "@material-ui/core/Snackbar";
-import { default as Content } from "../../Components/MainContent/MainContent";
 
 import "./displayNotes.css";
 
@@ -22,10 +21,13 @@ const useStyles = makeStyles({
     boxShadow: "none",
     border: "1px solid #e0e0e0",
     borderRadius: "8px",
-    width: "25%",
+    width: "239px",
     position: "relative",
     marginTop: "18px",
     marginLeft: "18px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
   Dialog: {
     paddingTop: "10",
@@ -61,7 +63,7 @@ export default function AllNotes(props) {
   const Notes = new NoteServices();
   const classes = useStyles();
   const [noteId, setNoteId] = useState();
-  const [info, setInfo] = useState({ title: "", description: "" });
+  const [info, setInfo] = useState({ title: "", description: "",color:"" });
   const [open, setOpen] = useState(false);
   const [isEdit, setValid] = useState(false);
   const [openSnack, setSnack] = useState(false);
@@ -70,10 +72,11 @@ export default function AllNotes(props) {
     console.log("postObject", props);
   });
 
-  const handleToggleOpen = (noteId, noteTitle, noteDesc) => {
+  const handleToggleOpen = (noteId, noteTitle, noteDesc,notecolor) => {
     setNoteId(noteId);
     info.title = noteTitle;
     info.description = noteDesc;
+    info.color=notecolor
     setOpen(true);
     console.log("id ......", noteId);
     console.log("note id ......", noteTitle);
@@ -87,6 +90,7 @@ export default function AllNotes(props) {
         noteId: noteId,
         title: info.title,
         description: info.description,
+        color:info.color
       };
       Notes.updateNote(data)
         .then((response) => {
@@ -109,22 +113,93 @@ export default function AllNotes(props) {
     }));
   };
 
-  const content = props.notesdata.map((post) => (
-    <Card className={classes.root}>
+  const handleArchive = (id, isArchive) => {
+    console.log("displaynotes", id);
+    console.log("displaynotes", isArchive);
+    // this.setState({ isArchived: isArchive });
+    // console.log(this.state.isArchived);
+
+    var note = {
+      noteIdList: [id],
+      isArchived: isArchive,
+    };
+
+    //Update service
+    Notes.archiveNote(note)
+      .then((response) => {
+        console.log(response);
+        // props.notesdata.filter((item) => item.isArchived === false);
+        // console.log("result", result);
+        props.allNotes();
+      })
+      .catch((err) => {
+        console.log("Eroorrrrrr....", err);
+      });
+  };
+  const handleTrash = (id, isTrash) => {
+    console.log("displaynotes", id);
+    console.log("displaynotes", isTrash);
+    // this.setState({ isArchived: isArchive });
+    // console.log(this.state.isArchived);
+
+    var noteTrash = {
+     
+        'noteIdList': [id],
+        'isDeleted': isTrash
+  
+    };
+
+    //Update service
+    Notes.trashNote(noteTrash)
+      .then((response) => {
+        console.log("trash",response);
+        // props.notesdata.filter((item) => item.isArchived === false);
+        // console.log("result", result);
+        props.allNotes();
+      })
+      .catch((err) => {
+        console.log("Eroorrrrrr....", err);
+      });
+  };
+ const handleColorChanger = (id, value) => {
+    // this.setState({ color: value })
+    var note = {
+        'noteIdList': [id],
+        'color': value,
+    }
+
+    Notes.changesColorNotes(note)
+        .then(response => {
+          console.log("response color",response);
+          props.allNotes();
+        })
+        .catch(err => {
+            console.log("Eroorrrrrr....", err);
+        })
+}
+
+
+
+  const content = props.notesdata.reverse().map((post) => (
+    <Card className={classes.root} style={{ backgroundColor: post.color}}>
       <CardContent
-        onClick={() => handleToggleOpen(post.id, post.title, post.description)}
+        onClick={() => handleToggleOpen(post.id, post.title, post.description ,post.color)}
       >
-        <Typography variant="body1">{post.title}</Typography>
-        <Typography variant="body1">{post.description}</Typography>
+        <Typography className="textContent" variant="body1">
+          {post.title}
+        </Typography>
+        <Typography className="textContent" variant="body1">
+          {post.description}
+        </Typography>
       </CardContent>
       <CardActions className="CardsIcons">
-        <Icons />
+        <Icons id={post.id} checkArchived={handleArchive} checkTrash={handleTrash} checkColor={handleColorChanger}/>
       </CardActions>
     </Card>
   ));
 
   return (
-    <div className="maincard">
+    <div className="maincard" >
       {content}
       <Dialog
         onClose={handleClose}
@@ -134,7 +209,7 @@ export default function AllNotes(props) {
           paper: classes.paper,
         }}
       >
-        <DialogContent dividers className={classes.Dialog}>
+        <DialogContent dividers className={classes.Dialog}   style={{ backgroundColor: info.color}}>
           <div className="dialogExtend">
             <div>
               <StyledTextField

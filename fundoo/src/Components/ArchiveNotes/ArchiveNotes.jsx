@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import AddNewCard from "../../Components/Add_NewCards/AddNewCards";
 import Service from "../../Service/NoteService/noteService";
 import AllNotes from "../../Components/DisplayNotes/displayNotes";
-
-export default function Content() {
-  console.log("fff");
+import './Archive.css'
+export default function Archive() {
   const noteService = new Service();
   const [notes, setNotes] = useState([]);
 
@@ -13,26 +11,18 @@ export default function Content() {
   }, []);
   const getUpdateNotes = async () => {
     await noteService
-      .getAllNotes()
+      .getarchieveNotes()
       .then((allNotes) => {
-        const result = allNotes.data.data.data.filter((item) => {
-          return (item.isArchived === false && item.isDeleted === false);
-        });
-
-        setNotes(result);
-
-        console.log("notesarray", notes);
+        setNotes(allNotes.data.data.data);
+        console.log("notesarray2212", allNotes);
       })
       .catch((err) => {
         console.log(err);
       });
   };
   return (
-    <div>
-      <AddNewCard Notes={getUpdateNotes} />
-
+    <div className="mainArchive">
       <AllNotes notesdata={notes} allNotes={getUpdateNotes} />
     </div>
   );
 }
-// export default getUpdateNotes()

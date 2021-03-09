@@ -24,27 +24,23 @@ import Edit from "../../Asset/edit.svg";
 import Trash from "../../Asset/menuTrash.svg";
 import EmojiObjectsOutlinedIcon from "@material-ui/icons/EmojiObjectsOutlined";
 import styled from "styled-components";
-import listView from "../../Asset/list_view.svg";
-import MainContent from '../../Components/MainContent/MainContent'
+import MainContent from "../../Components/MainContent/MainContent";
+import ArchiveNotes from "../../Components/ArchiveNotes/ArchiveNotes";
+import TrashNotes from "../../Components/TrashNotes/TrashNotes"
+import Profile from "../../Components/UserProfile/UserProfile";
+// import { useHistory } from "react-router-dom";
+import Avatar from '@material-ui/core/Avatar';
+import { Route,Switch,Link } from "react-router-dom";
 // import Icon from '@material-ui/core/Icon';
 import SearchSharpIcon from "@material-ui/icons/SearchSharp";
 const drawerWidth = 284;
+const name=localStorage.getItem("fname")
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+  profileIcon: {
+    width: "unset",
   },
   menuButton: {
     marginRight: 36,
@@ -122,21 +118,31 @@ const StyledTextField = styled(TextField)`
 
 export default function Dashboard() {
   const classes = useStyles();
+  // const history = useHistory();
 
   const [open, setOpen] = useState(true);
   const [show, setShow] = useState(false);
+  const [menuTitle, setMenuTitle] = useState("FundooNotes");
+  const [openProfile, setProfile] = useState("");
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
-  const toggle=(e)=>{
-    setShow(true)
-    e.style.display  =  show ? 'block' : 'none'
-  }
+  const toggle = (e) => {
+    setShow(true);
+    e.style.display = show ? "block" : "none";
+  };
+  const handleClickNotes = (titleInfo) => {
+    setMenuTitle(titleInfo);
+    console.log("title", titleInfo);
+  };
+  const userProfile = () => {
+    setProfile("Profile");
+  };
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar className="toolbar-content" position="fixed">
+      <AppBar className="toolbar-content">
         <Toolbar disableGutters={true}>
           <Tooltip title="Main menu">
             <IconButton
@@ -147,21 +153,26 @@ export default function Dashboard() {
               <MenuIcon id="menu" />
             </IconButton>
           </Tooltip>
-          <img src={Logo} alt="FundooImg" style={{ width: "38px" }} onClick={toggle}/>
+          <img
+            src={Logo}
+            alt="FundooImg"
+            style={{ width: "38px" }}
+            onClick={toggle}
+          />
           <div className="menuBar">
-            <div>fundooNotes</div>
+            <div className="titleMenu">{menuTitle}</div>
             <div className="searchSection">
               <SearchSharpIcon />
               <StyledTextField
                 placeholder="Search"
                 variant="outlined"
                 className="searchField"
-                margin="normal"
                 fullWidth={true}
               />
             </div>
-            <div>
-              <img src={listView} alt="listView" />
+            <div onClick={userProfile}>
+              <Avatar>{name}</Avatar>
+              {openProfile === "Profile" ? <Profile /> : null}
             </div>
           </div>
         </Toolbar>
@@ -183,8 +194,9 @@ export default function Dashboard() {
       >
         <Divider />
         <div className="mainDrawer">
-          <div>
-            <List>
+          <div onClick={() => handleClickNotes("FundooNotes")}>
+          <Link to="/dashboard" className="linkText">
+            <List className={menuTitle === "FundooNotes" ? "backColor" : ""}>
               <ListItem button>
                 <ListItemIcon>
                   <EmojiObjectsOutlinedIcon />
@@ -192,9 +204,10 @@ export default function Dashboard() {
                 <ListItemText primary="Notes" />
               </ListItem>
             </List>
+            </Link>
           </div>
-          <div>
-            <List>
+          <div onClick={() => handleClickNotes("Reminder")}>
+            <List className={menuTitle === "Reminder" ? "backColor" : null}>
               <ListItem button>
                 <ListItemIcon>
                   <img src={Reminder} alt="FundooImg" />
@@ -203,8 +216,8 @@ export default function Dashboard() {
               </ListItem>
             </List>
           </div>
-          <div>
-            <List>
+          <div onClick={() => handleClickNotes("Edit")}>
+            <List className={menuTitle === "Edit" ? "backColor" : null}>
               <ListItem button>
                 <ListItemIcon>
                   <img src={Edit} alt="FundooImg" />
@@ -213,8 +226,12 @@ export default function Dashboard() {
               </ListItem>
             </List>
           </div>
-          <div>
-            <List>
+          <div onClick={() => handleClickNotes("Archive")}>
+          
+          <Link to="/dashboard/archive" className="linkText" >
+                 
+              
+            <List className={menuTitle === "Archive" ? "backColor" : null}>
               <ListItem button>
                 <ListItemIcon>
                   <img src={Archive} alt="FundooImg" />
@@ -222,9 +239,12 @@ export default function Dashboard() {
                 <ListItemText primary="Archive" />
               </ListItem>
             </List>
+            </Link>
+          
           </div>
-          <div>
-            <List>
+          <div onClick={() => handleClickNotes("Trash")}>
+          <Link to="/dashboard/trash"  className="linkText">
+            <List className={menuTitle === "Trash" ? "backColor" : null}>
               <ListItem button>
                 <ListItemIcon>
                   <img src={Trash} alt="FundooImg" />
@@ -232,12 +252,20 @@ export default function Dashboard() {
                 <ListItemText primary="Trash" />
               </ListItem>
             </List>
+            </Link>
           </div>
         </div>
       </Drawer>
       <main className={classes.content}>
         <div>
-          <MainContent />
+          {/* {menuTitle === "FundooNotes" ? <MainContent /> : ""}
+          {menuTitle === "Archive" ? <ArchiveNotes /> : ""} */}
+          <Switch>
+          <Route path="/dashboard/archive" component={ArchiveNotes} />
+          <Route path="/dashboard/trash" component={TrashNotes} />
+          <Route path="/dashboard" component={MainContent} />
+          </Switch>
+          {/* {menuTitle === "Trash" ? <TrashNotes /> : ""} */}
         </div>
       </main>
     </div>

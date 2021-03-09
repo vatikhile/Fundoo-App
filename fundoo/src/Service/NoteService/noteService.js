@@ -29,5 +29,42 @@ export default class noteService {
             },
         })
     }
+    archiveNote(data) {
+        return httpService.Post(`${this.baseUrl}/archiveNotes`, data, {
+            headers: {
+                Authorization: `${token}`,
+            },
+        })
+    }
+    getarchieveNotes() {
+        return httpService.get(`${this.baseUrl}/getArchiveNotesList`, {
+            headers: {
+                Authorization: `${token}`,
+            },
+        })
+    }
 
+    getTrashNotes(){
+        return httpService.get(`${this.baseUrl}/getTrashNotesList`, {
+            headers: {
+                Authorization: `${token}`,
+            },
+        })
+    }
+    trashNote(data){
+        return httpService.Post(`${this.baseUrl}/trashNotes`, data, {
+            headers: {
+                Authorization: `${token}`,
+            },
+        })
+    }
+    changesColorNotes(data){
+        return httpService.Post(`${this.baseUrl}/changesColorNotes`, data, {
+            headers: {
+                Authorization: `${token}`,
+            },
+        })
+    }
+
+    
 }

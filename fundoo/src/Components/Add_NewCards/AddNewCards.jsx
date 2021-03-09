@@ -37,10 +37,14 @@ const StyledTextField = styled(TextField)`
     .MuiOutlinedInput-input {
       padding: 0;
     }
+  
+  }
+  .MuiOutlinedInput-multiline {
+    padding: 0;
   }
 `;
 
-export default function AddCard() {
+export default function AddCard(props) {
   const classes = useStyles();
   const addNotes = new NoteServices();
 
@@ -69,6 +73,7 @@ export default function AddCard() {
         .addNote(data, token)
         .then((response) => {
           console.log("create note 109 ", response);
+          props.Notes()
           setOpen(true);
         })
         .catch((err) => {
@@ -108,6 +113,7 @@ export default function AddCard() {
               value={info.title}
               onChange={handleChanges}
               fullWidth={true}
+              multiline={true}
             />
           </div>
 
@@ -119,6 +125,7 @@ export default function AddCard() {
               value={info.description}
               onChange={handleChanges}
               fullWidth={true}
+              multiline={true}
             />
           </div>
           <div className={openCard ? "showsIcons" : "noExtend"}>

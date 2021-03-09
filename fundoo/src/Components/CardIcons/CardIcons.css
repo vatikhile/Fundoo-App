@@ -13,3 +13,32 @@
 .IconsList div > Img:focus {
   background-color: red;
 }
+.paperPallet{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 850px) {
+  .IconsList > div {
+    margin-right: 10px;
+  }
+
+}
+@media screen and (max-width: 700px) {
+  .IconsList > div {
+    margin-right: 5px;
+  }
+
+}
+@media screen and (max-width: 660px) {
+  /* .IconsList {
+    display: none;
+  } */
+  .showsIcons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+  }
+
+}
